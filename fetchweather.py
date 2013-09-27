@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask import request
 import urllib
 import time
@@ -11,7 +11,7 @@ app.debug = True
 
 cache=dict()
 
-@app.route("/",methods=['POST', 'GET'])
+@app.route("/ajaxserver",methods=['POST', 'GET'])
 def getweather():
   # All input musts be validated...
   lat=request.args.get('lat','')
@@ -32,8 +32,7 @@ def getweather():
       extime=exhead[1].rstrip()
       # Caches the expiration time as a UTC-time-object 
       cache[url+'time']=pytz.utc.localize(datetime.datetime.strptime(extime,"%a, %d %b %Y %H:%M:%S %Z"))
-      
-  # Check for valid response
+      # Check for valid response
       dom=xml.dom.minidom.parseString(f.read())
       cache[url]=dom
       storage="Fetching"
@@ -48,6 +47,11 @@ def getweather():
         if len(nodes)>=1:
            clness=nodes[0].getAttribute('percent')
   return json.dumps({'temp' : temperature, 'lat':lat,'lon':lon,'time':moment,'cloudiness':clness,'st':storage})
+
+@app.route("/")
+def home():
+    return render_template('home.html')
+
 
 if __name__ == "__main__":
     app.run()
