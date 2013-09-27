@@ -31,7 +31,7 @@ function hHR_receiveddata(response,json){ // The response function to the ajax c
 	    $('error').innerHTML=jsondata.error;
 	}
     }
-    $('result').innerHTML=jsondata.temp; //+"&deg;C";
+    $('result').innerHTML=jsondata.temp+"&deg;C "+jsondata.cloudiness+"% cloud";
      $('spinner').style.visibility="hidden";
     
 }

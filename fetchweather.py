@@ -50,6 +50,8 @@ def getweather():
       cache[url]=dom
       storage="Fetching"
   timenodes=dom.getElementsByTagName('time')
+  temperature=''
+  clness=''
   for tnode in timenodes:
       # Looks for a node with the correct time
       if tnode.getAttribute('from')==moment:
