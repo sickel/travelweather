@@ -2,7 +2,12 @@
 {% extends "layout.html" %}
 {% block content %}
   <div class="jumbo">
-	<p><div>location <input class="inpLocation"/> time <input class="inpTime"/></div></p>
+    <table><tr><th>Location</th><th>date</th><th>time</th></tr>
+      <tr id="tr001"><td><input id="inpLocation"/></td><td><input id="inpDate"/></td><td><input id="inpTime"></td><td id="result"></td></div></tr>
+</table>
 	<button id="btFetchWeather">Weather</button>
+	<img id="spinner" src="static/ajax-bar.gif"/>
   </div>
+
+
 {% endblock %}
